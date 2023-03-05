@@ -1,0 +1,61 @@
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                Register Here - Template Driven forms
+            </div>
+            <div class="card-body">
+                <form #frmReg="ngForm">
+                    Person Name :
+                    <input type="text" [(ngModel)]="personname" name="personname" class="form-control"  #perinfo="ngModel"  minlength="5" pattern="^[a-zA-Z]*$" required />
+
+                    <div *ngIf="perinfo.touched && perinfo.invalid" class="alert alert-danger">
+                        <p *ngIf="perinfo.errors.required">Person Name is required</p>
+                        <p *ngIf="perinfo.errors.minlength">Person Name min  required 5 chars</p>
+                        <p *ngIf="perinfo.errors.pattern">Only Alphabets</p>
+                    </div>
+                    Gender:
+                    <input type="radio"  [(ngModel)]="gender" name="gender" value="Male" #rdogender="ngModel" required />Male
+                    <input type="radio"  [(ngModel)]="gender" name="gender"  value="Female" #rdogender="ngModel" required />Female
+                    <br />
+                    <div *ngIf="rdogender.touched && rdogender.invalid" class="alert alert-danger">
+                        <p *ngIf="rdogender.errors.required">Gender is required</p>            
+                    </div>
+
+                    Pincode :
+                    <input type="text" [(ngModel)]="pincode" name="pincode" class="form-control"  #pininfo="ngModel"  minlength="6" maxlength="6" pattern="^[0-9]*$" required />
+
+                    <div *ngIf="pininfo.touched && pininfo.invalid" class="alert alert-danger">
+                        <p *ngIf="pininfo.errors.required">Pincode is required</p>
+                        <p *ngIf="pininfo.errors.minlength || pininfo.errors.maxlength">Pincode min  required 6 digits</p>
+                        <p *ngIf="pininfo.errors.pattern">Only Digits</p>
+                    </div>
+
+                    Location:
+                    <select [(ngModel)]="location" name="location" #loc="ngModel" class="form-control"  required>
+                        <option value="">Select City</option>
+                        <option value="Hyderabad">Hyderabad</option>
+                        <option value="Bangalore">Bangalore</option>
+                        <option value="Amaravathi">Amaravathi</option>
+                    </select>
+                    
+                    <div *ngIf="loc.touched && loc.invalid" class="alert alert-danger">
+                        <p *ngIf="loc.errors.required">Location is required</p>
+                    </div>
+
+                <input type="submit"  value="Reg Here" class="btn btn-primary"        
+                (click) = "ShowValues (frmReg)"/>
+                <br />
+                <p style="color:green" [innerHTML]="tblinfo"></p>
+                <br />
+                <p style="text-align:center;width: 100%;">
+                    <a routerLink="/login">Back</a>
+                </p>
+            </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3"></div>
+</div>

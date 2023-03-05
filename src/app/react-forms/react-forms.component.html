@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col-md-3"> </div>
+    <div class="col-md-6"> 
+        <div class="card">
+            <div class="card-header">
+                Register Here -  Reactive driven forms
+            </div>
+            <div class="card-body">
+                <form [formGroup]="regForm">
+                    Person Name:
+                    <input type="text" formControlName="personname" class="form-control" />
+                  
+                    <div *ngIf="regForm.controls.personname.touched && regForm.controls.personname.invalid" class="alert alert-danger">
+                        <p *ngIf="regForm.controls.personname.errors.required">Person Name is required</p>
+                        <p *ngIf="regForm.controls.personname.errors.minlength">Person Name min  required 5 chars</p>
+                        <p *ngIf="regForm.controls.personname.errors.pattern">Only Alphabets</p>
+                    </div>
+                    <br />
+                    Gender:
+                    <input type="radio" formControlName="gender" value="Male" /> Male
+                    <input type="radio" formControlName="gender" value="Female" /> Female
+                    <br />
+                    <div *ngIf="regForm.controls.gender.touched && regForm.controls.gender.invalid" class="alert alert-danger">
+                        <p *ngIf="regForm.controls.gender.errors.required">Gender is required</p>
+                    </div>
+                    <br />
+                    Location:
+                    <select formControlName="location">
+                        <option value="">Select City</option>
+                        <option value="Hyedrabad">Hyedrabad</option>
+                        <option value="Mumbai">Mumbai</option>
+                        <option value="Kolkata">Kolkata</option>
+                        <option value="Delhi">Delhi</option>
+                        <option value="Chennai">Chennai</option>
+                        <option value="Bengaluru">Bengaluru</option>
+                    </select>
+                    <br />
+                    <div *ngIf="regForm.controls.location.touched && regForm.controls.location.invalid" class="alert alert-danger">
+                        <p *ngIf="regForm.controls.location.errors.required">Location is required</p>
+                    </div>
+                    <br />
+                    Pincode:
+                    <input type="text" formControlName="pincode" class="form-control" />
+               
+                    <div *ngIf="regForm.controls.pincode.touched && regForm.controls.pincode.invalid" class="alert alert-danger">
+                        <p *ngIf="regForm.controls.pincode.errors.required">Pincode is required</p>
+                        <p *ngIf="regForm.controls.pincode.errors.minlength">Minimum 6 digits</p>
+                        <p *ngIf="regForm.controls.pincode.errors.maxlength">Maximum 6 digits</p>
+                        
+                    </div>
+                    <br />
+                    <input type="submit" value="Register here" class="btn btn-primary" 
+                    (click)="showValues()" />
+                  
+                </form>
+                <br />
+                <p [innerHTML]="msginfo"></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3"> </div>
+</div>

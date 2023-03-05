@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                Login Here - Template Driven forms
+            </div>
+            <div class="card-body">
+                <form #frmLog ="ngForm">
+                    Username :
+                    <input type="text" [(ngModel)]="username" name="username" class="form-control"  #uinfo="ngModel" required />
+
+                    <div *ngIf="uinfo.touched && uinfo.invalid" class="alert alert-danger">
+                        <p *ngIf="uinfo.errors.required">Username is required</p>
+                    </div>
+                    <br>
+                    Password :
+                    <input type="password" [(ngModel)]="pwd" name="password" class="form-control"  #pinfo="ngModel"  minlength="5" pattern="^[a-zA-Z]*$" required />
+
+                    <div *ngIf="pinfo.touched && pinfo.invalid" class="alert alert-danger">
+                        <p *ngIf="pinfo.errors.required">Password is required</p>
+                        <p *ngIf="pinfo.errors.minlength">Password minimum 5 characters required </p>
+                        <p *ngIf="pinfo.errors.pattern"> Only characters </p>
+                    </div>
+
+                <input type="submit"  value="Login Here" class="btn btn-primary" (click)="ChkUserDetails()" />
+                <br />
+                <p style="text-align: center;width: 100%;">If new User: &nbsp;<a routerLink="reg1">Register Here!</a> </p>
+            </form>
+            <p style="text-align: center;width: 100%;color: green;">{{msg}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+</div>
